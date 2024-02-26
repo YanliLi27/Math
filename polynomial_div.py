@@ -1,12 +1,12 @@
 import torch
 import matplotlib.pyplot as plt
 import torch.nn as nn
-from polynomial_dataset import train_data
+from polynomial_dataset import div_data
 from pearson_model import NN
 
     
 device=torch.device('cuda' if torch.cuda.is_available() else 'cpu')
-x, y, z = train_data(length=10000, seq=0)
+x, y, z = div_data(length=10000, seq=0)
 x, y, z = x.to(device), y.to(device), z.to(device)
 # [batch=length, channel=seq]
 
@@ -17,7 +17,7 @@ optimizer = torch.optim.AdamW(net.parameters(), lr=0.001)
 
 lossfunc = torch.nn.MSELoss()
 
-tx, ty, tz = train_data(length=1000, seq=0)
+tx, ty, tz = div_data(length=1000, seq=0)
 tx, ty, tz = tx.to(device), ty.to(device), tz.to(device)
 
 for i in range(1000):
